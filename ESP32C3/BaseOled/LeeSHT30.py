@@ -1,18 +1,32 @@
-from sht30 import SHT30
 from machine import Pin,I2C
-from ssd1306 import SSD1306_I2C
+
+from xglcd_font import XglcdFont
+from ssd1306 import Display
+from sht30 import SHT30
 
 sensor = SHT30()
 
-i2cDisp = I2C(scl=Pin(7), sda=Pin(6), freq=100000)  #Inicializa i2c
-display = SSD1306_I2C (128, 64, i2cDisp)
+i2cDisp = I2C(-1, freq=400000, scl=Pin(7), sda=Pin(6))  # Qt-Py S2 I2C bus 1
+display = Display(i2c=i2cDisp)
 
-display.fill (0)
-display.text ("Hola",10,10,1)
-display.text ("Mundo",10,20,1)
-display.show()
+#Cargar fonts
+perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
+robotron = XglcdFont('fonts/Robotron7x11.c', 7, 11)
 
-try:
-    t, h = sensor.measure()
-except SHT30Error as ex:
-    print('Error:', ex)
+
+
+temperature, humidity = sensor.measure()
+
+print('Temperature:', temperature, 'ºC, RH:', humidity, '%')
+
+tempStr = f"{temperature:.1f}"
+humStr  = f"{humidity:.0f}"
+
+display.draw_text(5, 10, "Temp        Hum", robotron, True)
+
+
+display.draw_text(5, 30, tempStr, perfect, False)
+display.draw_text(80, 30, humStr, perfect, False)
+
+
+display.present()
