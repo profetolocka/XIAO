@@ -1,11 +1,11 @@
 #Demo de imagen bitmap. Muestra el logo de Seeed Studio
 
 from time import sleep
-from machine import Pin, I2C  # type: ignore
+from machine import Pin, SoftI2C 
 from ssd1306 import Display
 
 #Crear objeto I2C
-i2c = I2C(-1, freq=400000, scl=Pin(7), sda=Pin(6))
+i2c = SoftI2C(freq=400000, scl=Pin(7), sda=Pin(6))  #Pines de la XIAO ESP32-C3
 
 #Crear objeto display
 display = Display(i2c=i2c, width=128, height=64)
