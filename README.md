@@ -14,3 +14,19 @@ Con un tamaño ultra reducido (sólo 20 x 17,5 cm) y basados en plataformas de h
 Las placas XIAO (un prefijo del idioma chino que se traduce como “pequeño”) encierran una enorme capacidad y flexibilidad en un tamaño compacto.
 
 [![Alt text](https://img.youtube.com/vi/A_XUi8tlKWk/0.jpg)](https://www.youtube.com/watch?v=A_XUi8tlKWk)
+
+## Contenido
+
+El repositorio está organizado en dos carpetas, **Español** y **English** organizando el contenido en esos dos idiomas. Dentro de ellas se encuentran subcarpetas, cada una de las cuales contiene un proyecto o ejemplo diferente, con su correspondiente archivo README explicativo. El nombre de la carpeta indica la placa utilizada, los módulos o expansiones empleados (si los hubiere) y el lenguaje de programación usado (MPY=Micropython, CPY=CircuitPython, ARD=Arduino).
+
+## Licencia
+
+Todos los proyectos son de **código abierto** (open source y open hardware) y están publicados bajo una licencia **MIT**.
+
+## Contacto
+
+Puedes contactarme y ver el resto de mi trabajo en:
+
+- Github: [@profetolocka](https://github.com/profetolocka)
+- Blog: [Profe Tolocka](https://www.profetolocka.com.ar)
+- Redes: [linktr.ee](https://linktr.ee/profetolocka)
