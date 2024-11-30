@@ -1,4 +1,6 @@
-# XIAO
+[Go to english version](#XIAO-Projects)
+
+# Proyectos con XIAO
 
 ## Introducción
 
@@ -30,3 +32,37 @@ Puedes contactarme y ver el resto de mi trabajo en:
 - Github: [@profetolocka](https://github.com/profetolocka)
 - Blog: [Profe Tolocka](https://www.profetolocka.com.ar)
 - Redes: [linktr.ee](https://linktr.ee/profetolocka)
+
+---
+# XIAO Projects
+
+## Introduction
+
+This repository aims to showcase the projects I have developed using various boards from the XIAO family by Seeed Studio. It is a collection of projects created over time and includes test programs, utilities, and specific projects, ranging from simple and straightforward applications to more complex ones.
+
+If you are a student, hobbyist, or maker, I hope these projects will help you learn how to use and program XIAO boards so you can create your own designs.
+
+## XIAO
+
+The XIAO boards from Seeed Studio represent a family of compact, powerful, and versatile microcontrollers designed for IoT projects, machine learning, and general electronics.  
+With an ultra-small size (only 20 x 17.5 mm) and based on popular hardware platforms such as ESP32, RA4M1, Raspberry, nRF52840, and SAMD21, these microcontrollers are an excellent choice for developing advanced solutions and experimenting with Tiny Machine Learning (TinyML).
+
+The XIAO boards (a prefix in Chinese that translates to “small”) pack immense capability and flexibility into a compact size.
+
+[![Alt text](https://img.youtube.com/vi/A_XUi8tlKWk/0.jpg)](https://www.youtube.com/watch?v=A_XUi8tlKWk)
+
+## Content
+
+The repository is organized into two folders, **Español** and **English**, categorizing the content by these two languages. Within them, there are subfolders, each containing a different project or example with its corresponding README file. The folder name indicates the board used, the modules or expansions employed (if any), and the programming language used (MPY=Micropython, CPY=CircuitPython, ARD=Arduino).
+
+## License
+
+All projects are **open source** (open source and open hardware) and are published under an **MIT** license.
+
+## Contact
+
+You can contact me and see the rest of my work at:
+
+- Github: [@profetolocka](https://github.com/profetolocka)
+- Blog: [Profe Tolocka](https://www.profetolocka.com.ar)
+- Social: [linktr.ee](https://linktr.ee/profetolocka)
