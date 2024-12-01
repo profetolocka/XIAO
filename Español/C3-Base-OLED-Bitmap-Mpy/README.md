@@ -2,7 +2,7 @@
 
 # Descripción
 Este es un ejemplo de uso del OLED de la Base expansion de XIAO. Se muestra un bitmap (logo de Seeed Studio) utilizando la librería de [rdagger](https://github.com/rdagger/micropython-ssd1306)
-![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
+
 
 # Librerías
 
