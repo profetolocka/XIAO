@@ -32,7 +32,7 @@ display = Display(i2c=i2c, width=128, height=64)
 #Crear objeto sensor
 sensorTH = DHT11 (Pin(D5))
 
-# Carga font
+# Carga font grande
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
 
 
@@ -52,24 +52,15 @@ while (True):
     #Borrar buffer
     display.clear_buffers()
     
+    #Mostrar valores de temperatura y humedad en OLED
     display.draw_text(5, 31, tempStr, perfect, False)
     display.draw_text(85, 31, humStr, perfect, False)
     
     #Mostrar bitmaps
-    
     display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    
+    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+
+    #Actualizar pantalla
     display.present()
 
-
-    #Mostrar bitmap
-    #display.draw_bitmap("images/seeedLogo.mono", 0, 0, 116, 64)
-    #display.present()
-    #sleep(10)
-
- 
-
-    #Mostrar bitmap
-    #display.draw_bitmap("images/seeedLogo.mono", 0, 0, 116, 64, invert=True)
-    #display.present()
     sleep(10)
