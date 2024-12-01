@@ -9,6 +9,16 @@ Hay que instalar la lib del OLED y la de los fonts. Se lo puede hacer usando MIP
 >>> wlan=network.WLAN (network.STA_IF)
 >>> wlan.active (True)
 True
->>> wlan.connect ("LosToloNetwork", "performance15")
+>>> wlan.connect ("xxxx", "xxxx")
+>>> import mip
+>>> mip.install ("https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py")
+Downloading https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py to /lib
+Copying: /lib/ssd1306.py
+Done
+>>> mip.install ("https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/xglcd_font.py")
+Downloading https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/xglcd_font.py to /lib
+Copying: /lib/xglcd_font.py
+Done
+>>> 
 
 ```
