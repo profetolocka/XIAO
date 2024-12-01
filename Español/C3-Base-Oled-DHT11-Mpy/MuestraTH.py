@@ -1,4 +1,5 @@
 # Mide valores de temperatura y humedad usando el módulo Grove DHT11
+# Muestra en OLED de base de expansion usando lib ssd1306 oficial
 
 # Pines
 D5 = 7
@@ -6,7 +7,7 @@ D5 = 7
 from machine import Pin, SoftI2C
 from time import sleep
 from dht import DHT11
-from ssd1306 import SSD1306_I2C
+from ssd1306 import SSD1306_I2C #Libreria oficial
 
 
 #Crea objeto I2C
