@@ -7,8 +7,8 @@ Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmap
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
 # Librerías
-Este proyecto usa la librería de rdagger para controlar el OLED
-Hay que instalar la lib del OLED y la de los fonts. Se lo puede hacer usando MIP
+Este proyecto usa la [librería de rdagger](https://github.com/rdagger/micropython-ssd1306) para controlar el OLED.
+Hay que instalar la lib del OLED y la de los fonts. Se lo puede hacer usando MIP:
 
 ```python annotate
 >>> import network
