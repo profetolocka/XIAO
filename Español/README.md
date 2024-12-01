@@ -1,5 +1,8 @@
 # Proyectos con placas XIAO 
 
+Estos son algunos ejemplos de aplicación de distintas placas de la familia XIAO.
+
+
 |         Nombre         |          Descripción                   |  Placa XIAO |  Módulos o expansiones  | Lenguaje programacion |
 |------------------------|----------------------------------------|-------------|-------------------------|-----------------------|
 |C3-Base-OLED-Bitmap-Mpy | Muestra bitmaps en el OLED             | ESP32-C3    | Placa base              | Micropython           |
