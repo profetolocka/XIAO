@@ -1,5 +1,9 @@
 # Sensor de temperatura y humedad con DHT11
 
+# Descripción
+Este proyecto consiste en un sensor de temperatura y humedad basado en el módulo Grove DHT11. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
+Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmaps relacionadas con las magnitudes.
+
 # Librerías
 Este proyecto usa la librería de rdagger para controlar el OLED
 Hay que instalar la lib del OLED y la de los fonts. Se lo puede hacer usando MIP
