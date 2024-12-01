@@ -49,11 +49,15 @@ while (True):
     tempStr = f"{temp:.1f}"
     humStr  = f"{hum:.0f}"
 
-    #display.draw_text(5, 10, "Temp        Hum", robotron, True)
-
-
-    display.draw_text(5, 30, tempStr, perfect, False)
-    display.draw_text(80, 30, humStr, perfect, False)
+    #Borrar buffer
+    display.clear_buffers()
+    
+    display.draw_text(5, 31, tempStr, perfect, False)
+    display.draw_text(85, 31, humStr, perfect, False)
+    
+    #Mostrar bitmaps
+    
+    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
     
     display.present()
 
@@ -63,8 +67,7 @@ while (True):
     #display.present()
     #sleep(10)
 
-    #Borrar buffer
-    #display.clear_buffers()
+ 
 
     #Mostrar bitmap
     #display.draw_bitmap("images/seeedLogo.mono", 0, 0, 116, 64, invert=True)
