@@ -1,7 +1,7 @@
 # Lectura de sensor DHT11
 
 # Descripción
-Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo Grove DHT11.
+Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo **Grove DHT11** usando una placa **XIAO ESP32-C3**.
 
 
 # Librerías
