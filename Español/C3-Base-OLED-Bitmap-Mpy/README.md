@@ -1,7 +1,7 @@
 # Uso de bitmaps en OLED
 
 # Descripción
-Este es un ejemplo de uso del OLED de la Base expansion de XIAO. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
+Este es un ejemplo de uso del OLED de la Base expansion de XIAO con una placa ESP32-C3. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
 
 
 # Librerías
