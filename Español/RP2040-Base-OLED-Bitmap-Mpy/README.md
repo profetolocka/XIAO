@@ -1,30 +1,18 @@
 # Uso de bitmaps en OLED
 
 # Descripción
-Este es un ejemplo de uso del OLED de la Base expansion de XIAO. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
+Este es un ejemplo de uso del OLED de la Base expansion con una placa **XIAO RP2040** . Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
 
 
 # Librerías
 Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
-Hay que copiarla en la carpeta \lib de la XIAO manualmente o usando **MIP**
+Hay que copiarla en la XIAO manualmente (no se puede instalar empleando el Gestor de paquetes de Thonny).
 
-```python annotate
->>> import network
->>> wlan=network.WLAN (network.STA_IF)
->>> wlan.active (True)
-True
->>> wlan.connect ("xxxx", "xxxx")
->>> import mip
->>> mip.install ("https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py")
-Downloading https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py to /lib
-Copying: /lib/ssd1306.py
-Done
->>> 
+Descargala de la URL provista mas arriba como un archivo .ZIP y luego copia el archivo **ssd1306.py** al sistema de archivos de la XIAO.
 
-```
 
 # Imágenes
-El código carga la imagen `seeedLogo.mono` desde la carpeta **images** en el sistema de archivo
+El código carga la imagen `seeedLogo.mono` desde la carpeta **images** en el sistema de archivos.
 
 Esta imagen y la original en formato BMP están en la carpeta **images** del repositorio. En la misma carpeta se encuentra el programa **img2monoHMSB.py** que permite convertir la imagen BMP al formato monoHMSB
 
