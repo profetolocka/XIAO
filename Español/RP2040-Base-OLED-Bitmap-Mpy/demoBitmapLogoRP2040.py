@@ -1,7 +1,7 @@
 #Demo de imagen bitmap. Muestra el logo de Seeed Studio
 #Usa una placa XIAO RP2040
 
-#Pines
+#Nombre de los pines GPIO
 D0 = 26
 D1 = 27
 D2 = 28
@@ -14,12 +14,17 @@ D8 = 2
 D9 = 4
 D10 = 3
 
+#Pines de I2C en la RP2040
+SDA_PIN = D4
+SCL_PIN = D5
+
+
 from time import sleep
 from machine import Pin, SoftI2C 
 from ssd1306 import Display
 
 #Crear objeto I2C
-i2c = SoftI2C(freq=400000, scl=Pin(D5), sda=Pin(D4))  #Pines de la XIAO RP2040
+i2c = SoftI2C(freq=400000, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN))  
 
 #Crear objeto display
 display = Display(i2c=i2c, width=128, height=64)
