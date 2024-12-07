@@ -1,7 +1,10 @@
 # Lectura de sensor DHT11
 
 # Descripción
-Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo **Grove DHT11** usando una placa **XIAO ESP32-C3**.
+Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo **Grove DHT11** usando una placa **XIAO RP2040**.
+El módulo **Grove DHT11** se conecta al pin **D7**
+
+![XIAO RP2040](/images/RP2040OledDHT11.jpeg)
 
 
 # Librerías
