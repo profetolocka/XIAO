@@ -6,7 +6,6 @@ El módulo **Grove DHT11** se conecta al pin **D7**
 
 ![XIAO RP2040](/images/RP2040OledDHT11.jpg)
 
-
 # Librerías
 Este proyecto utiliza la librería `ssd1306.py` oficial que puede copiarse manualmente al sistema de archivos de la XIAO o a través del **gestor de paquetes** de Thonny.
 
