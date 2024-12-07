@@ -6,7 +6,7 @@ Este es un ejemplo de uso del OLED de la Base expansion con una placa **XIAO RP2
 
 # Librerías
 Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
-Hay que copiarla en la carpeta \lib de la XIAO manualmente (no se puede instalar empleando el Gestor de paquetes de Thonny).
+Hay que copiarla en la XIAO manualmente (no se puede instalar empleando el Gestor de paquetes de Thonny).
 
 Descargala de la URL provista mas arriba como un archivo .ZIP y luego copia el archivo **ssd1306.py** al sistema de archivos de la XIAO.
 
