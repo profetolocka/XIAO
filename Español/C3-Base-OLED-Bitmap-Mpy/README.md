@@ -1,15 +1,40 @@
-Este es un ejemplo de uso del OLED de la Base expansion de XIAO
-Usa la librería https://github.com/rdagger/micropython-ssd1306/blob/main/demo_images.py y muestra el logo de Seeed Studio en pantalla
+# Uso de bitmaps en OLED
 
+# Descripción
+Este es un ejemplo de uso del OLED de la Base expansion de XIAO. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
+
+
+# Librerías
 Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
-Hay que copiarla en la carpeta \lib de la XIAO
+Hay que copiarla en la carpeta \lib de la XIAO manualmente o usando **MIP**
 
-El código carga la imagen 'seeedLogo.mono' desde la carpeta '\images' en el sistema de archivo
+```python annotate
+>>> import network
+>>> wlan=network.WLAN (network.STA_IF)
+>>> wlan.active (True)
+True
+>>> wlan.connect ("xxxx", "xxxx")
+>>> import mip
+>>> mip.install ("https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py")
+Downloading https://raw.githubusercontent.com/rdagger/micropython-ssd1306/refs/heads/main/ssd1306.py to /lib
+Copying: /lib/ssd1306.py
+Done
+>>> 
 
-Esta imagen y la original en formato BMP están en la carpeta 'images' del repositorio. En la misma carpeta se encuentra el programa img2c.py que permite convertir la imagen BMP al formato img2monoHMSB.py
+```
+
+# Imágenes
+El código carga la imagen `seeedLogo.mono` desde la carpeta **images** en el sistema de archivo
+
+Esta imagen y la original en formato BMP están en la carpeta **images** del repositorio. En la misma carpeta se encuentra el programa **img2monoHMSB.py** que permite convertir la imagen BMP al formato monoHMSB
+
 Esto se hace de la siguiente forma:
+
 (En la ventana de comandos)
 
+```
 python img2monoHMSB.py seeedLogo.bmp
-El archivo seeedLogo.mono generado debe cargarse en la carpeta \images de la XIAO
+```
+
+El archivo `seeedLogo.mono` generado debe cargarse en la carpeta **images** de la XIAO
 
