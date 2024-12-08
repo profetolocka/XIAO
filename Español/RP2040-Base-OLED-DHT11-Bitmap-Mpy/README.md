@@ -1,7 +1,7 @@
 # Sensor de temperatura y humedad con DHT11
 
 # Descripción
-Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO ESP32-C3** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
+Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO RP2040** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
 Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmaps relacionadas con las magnitudes.
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
@@ -28,3 +28,9 @@ Done
 >>> 
 
 ```
+# Fonts
+Para imprimir en el OLED los valores de temperatura y humedad, se usa la fuente **PerfectPixel_23x32** que debe estar copiada en el sistema de archivos de la RP2040 en la carpeta **fonts**
+
+# Imágenes
+Se usan dos imágenes tipo bitmap para acompañar a los valores numéricos. Estas son **TempIcon.mono** y **HumIcon.mono** que se deben copiar en el sistema de archivos de la RP2040 en la carpeta **images**
+
