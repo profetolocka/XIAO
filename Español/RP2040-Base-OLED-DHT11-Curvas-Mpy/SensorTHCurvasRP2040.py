@@ -46,7 +46,7 @@ sampleTime = 10
 ####################  Funciones ###################
 
 def beep():
-
+    # Hace un beep en el buzzer pasivo
     buzzer = PWM(Pin(BUZZER_PIN))
     buzzer.freq(1000)
     buzzer.duty_u16(32768)  # 50% Duty Cycle
@@ -55,9 +55,19 @@ def beep():
     buzzer.deinit()
 
 def showList ():
-    
+    # Muestra la deque
     for i in listTH:
         print (i)
+        
+def plotTemp ():
+    # Grafica los valores de temperatura
+    display.clear()
+    display.draw_rectangle(9, 4, 110, 56, invert=False)
+    display.present ()
+
+def plotHum ():
+    # Grafica los valores de humedad
+    pass
 
 ####################  Código principal  ###################
 
@@ -105,13 +115,15 @@ while (True):
     #Borrar buffer
     display.clear_buffers()
     
+    plotTemp ()
+    
     #Mostrar valores de temperatura y humedad en OLED
-    display.draw_text(5, 31, tempStr, perfect, False)
-    display.draw_text(85, 31, humStr, perfect, False)
+    #display.draw_text(5, 31, tempStr, perfect, False)
+    #display.draw_text(85, 31, humStr, perfect, False)
     
     #Mostrar bitmaps
-    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+    #display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
+    #display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
 
     #Actualizar pantalla
     display.present()
