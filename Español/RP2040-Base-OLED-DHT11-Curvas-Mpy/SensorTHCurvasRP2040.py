@@ -1,6 +1,18 @@
 # Sensor de temperatura y humedad con RP2040 y modulo Grove DHT11
 # Muestra valores en OLED de placa de expansión
 # Usa fonts grandes y bitmaps
+# Muestra curvas de valores de temperatura y humedad
+
+from time import sleep
+from machine import Pin, SoftI2C 
+from ssd1306 import Display
+from xglcd_font import XglcdFont
+
+from collections import deque  #doble-ended queue
+
+from dht import DHT11
+
+################  Constantes ####################
 
 #Equivalencias entre nombres de pines y GPIOs
 D0 = 26
@@ -16,41 +28,63 @@ D9 = 4
 D10 = 3
 
 # Pines de I2C de la RP2040
-PIN_SDA = D4
-PIN_SCL = D5
+SDA_PIN = D4
+SCL_PIN = D5
 
 # Pin de conexion del DHT11
-PIN_DHT11 = D7
+DHT11_PIN = D7
 
-from time import sleep
-from machine import Pin, SoftI2C 
-from ssd1306 import Display
-from xglcd_font import XglcdFont
+#Buzzer
+BUZZER_PIN = D3
 
+# Cantidad de valores a graficar
+maxValues = 10
 
-from dht import DHT11
+# Tiempo entre mediciones
+sampleTime = 10
+
+####################  Funciones ###################
+
+def showList ():
+    
+    for i in listTH:
+        print (i)
+
+####################  Código principal  ###################
 
 #Crear objeto I2C
-i2c = SoftI2C(freq=400000, scl=Pin(PIN_SCL), sda=Pin(PIN_SDA)) 
+i2c = SoftI2C(freq=400000, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN)) 
 
 #Crear objeto display
 display = Display(i2c=i2c, width=128, height=64)
 
 #Crear objeto sensor
-sensorTH = DHT11 (Pin(PIN_DHT11))
+sensorTH = DHT11 (Pin(DHT11_PIN))
 
 # Carga font grande
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
+
+# Crear objeto lista para guardar los valores para el gráfico
+listTH = deque ([], maxValues)  #No usa maxlen=
 
 
 # Loop
 while (True):
     
-    sensorTH.measure ()  #Mide Temperatura y humedad del DHT11
-    
+    # Medir temperatura y humedad
+    sensorTH.measure ()
+     
+    # Separar valores
     temp = sensorTH.temperature()
     hum  = sensorTH.humidity()
     
+    # Guardarlo en la lista (deque)
+    listTH.append ((temp,hum))
+    
+    # Muestra los valores almacenados
+    showList () 
+  
+# Imprimir por consola
     print (temp,"grados")
     print (hum ,"%")
     
@@ -71,4 +105,5 @@ while (True):
     #Actualizar pantalla
     display.present()
 
-    sleep(10)
+    # Esperar para la próxima medición
+    sleep(sampleTime)
