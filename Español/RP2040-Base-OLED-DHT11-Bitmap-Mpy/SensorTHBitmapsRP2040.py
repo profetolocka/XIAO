@@ -15,27 +15,35 @@ D8 = 2
 D9 = 4
 D10 = 3
 
+# Pines de I2C de la RP2040
+PIN_SDA = D4
+PIN_SCL = D5
+
+# Pin de conexion del DHT11
+PIN_DHT11 = D7
 
 from time import sleep
 from machine import Pin, SoftI2C 
 from ssd1306 import Display
 from xglcd_font import XglcdFont
 
+
 from dht import DHT11
 
 #Crear objeto I2C
-i2c = SoftI2C(freq=400000, scl=Pin(7), sda=Pin(6))  #Pines de la XIAO ESP32-C3
+i2c = SoftI2C(freq=400000, scl=Pin(PIN_SCL), sda=Pin(PIN_SDA)) 
 
 #Crear objeto display
 display = Display(i2c=i2c, width=128, height=64)
 
 #Crear objeto sensor
-sensorTH = DHT11 (Pin(D5))
+sensorTH = DHT11 (Pin(PIN_DHT11))
 
 # Carga font grande
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
 
 
+# Loop
 while (True):
     
     sensorTH.measure ()  #Mide Temperatura y humedad del DHT11
