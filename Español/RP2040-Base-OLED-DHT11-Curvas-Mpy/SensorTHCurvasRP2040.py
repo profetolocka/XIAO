@@ -4,7 +4,7 @@
 # Muestra curvas de valores de temperatura y humedad
 
 from time import sleep
-from machine import Pin, SoftI2C 
+from machine import Pin, SoftI2C, PWM
 from ssd1306 import Display
 from xglcd_font import XglcdFont
 
@@ -45,6 +45,15 @@ sampleTime = 10
 
 ####################  Funciones ###################
 
+def beep():
+
+    buzzer = PWM(Pin(BUZZER_PIN))
+    buzzer.freq(1000)
+    buzzer.duty_u16(32768)  # 50% Duty Cycle
+
+    sleep(0.1)
+    buzzer.deinit()
+
 def showList ():
     
     for i in listTH:
@@ -74,6 +83,8 @@ while (True):
     # Medir temperatura y humedad
     sensorTH.measure ()
      
+    beep ()
+    
     # Separar valores
     temp = sensorTH.temperature()
     hum  = sensorTH.humidity()
