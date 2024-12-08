@@ -1,19 +1,19 @@
-# Sensor de temperatura y humedad con modulo Grove DHT11
+# Sensor de temperatura y humedad con RP2040 y modulo Grove DHT11
 # Muestra valores en OLED de placa de expansión
 # Usa fonts grandes y bitmaps
 
 #Equivalencias entre nombres de pines y GPIOs
-D0 = 2
-D1 = 3
-D2 = 4
-D3 = 5
+D0 = 26
+D1 = 27
+D2 = 28
+D3 = 29
 D4 = 6
 D5 = 7
-D6 = 21
-D7 = 20
-D8 = 8
-D9 = 9
-D10 = 10
+D6 = 0
+D7 = 1
+D8 = 2
+D9 = 4
+D10 = 3
 
 
 from time import sleep
