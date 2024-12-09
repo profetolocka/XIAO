@@ -60,29 +60,56 @@ def showList ():
         print (i)
         
 def plotHum ():
-    # Grafica los valores de temperatura
+    # Grafica los valores de humedad
+    
+    maxHum = 100
+    
     display.clear()
     display.draw_rectangle(20, 4, 104, 56, invert=False)
     #Ventana para imprimir 100 x 54
     
     #Escala de valores de humedad
     display.draw_text(0, 0, "100", fixed, False)
-    display.draw_text(5, 27, "50", fixed, False)
+    display.draw_text(5, 28, "50", fixed, False)
     display.draw_text(10, 54, "0", fixed, False)
+    
+    #Titulo
+    display.draw_text(58, 5, "Hum", fixed, False)
 
-    #Mostrar cada valor almacenado
+    #Plotear los valores almacenados
     x = 22
     for i in listTH:
-        h = int (i[1]*54/100)  #Escalar
-        print ("Plot: ",h)
-        display.draw_vline(x, 58-h, h, invert=False)
+        h = int (i[1]*56/maxHum)  #Escalar
+        display.draw_vline(x, 60-h, h, invert=False)
         x=x+1
     
     display.present ()
 
 def plotTemp ():
-    # Grafica los valores de humedad
-    pass
+    # Grafica los valores de temperatura
+    
+    maxTemp = 50
+    
+    display.clear()
+    display.draw_rectangle(20, 4, 104, 56, invert=False)
+    #Ventana para imprimir 100 x 54
+    
+    #Escala de valores de humedad
+    display.draw_text(5, 0, "50", fixed, False)
+    display.draw_text(5, 28, "25", fixed, False)
+    display.draw_text(10, 54, "0", fixed, False)
+    
+    #Titulo
+    display.draw_text(58, 5, "Temp", fixed, False)
+
+    #Plotear los valores almacenados
+    x = 22
+    for i in listTH:
+        h = int (i[0]*56/maxTemp)  #Escalar
+        display.draw_vline(x, 60-h, h, invert=False)
+        x=x+1
+    
+    display.present ()
 
 ####################  Código principal  ###################
 
