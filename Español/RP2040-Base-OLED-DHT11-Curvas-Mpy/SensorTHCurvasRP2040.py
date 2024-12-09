@@ -86,6 +86,9 @@ def showTH (temp, hum):
     display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
     display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
 
+    display.draw_text(0, 0, "MIN", fixed, False)
+
+
     #Actualizar pantalla
     display.present()
     
@@ -142,6 +145,17 @@ def plotTemp ():
         x=x+1
     
     display.present ()
+
+def showMin ():
+    pass
+
+def showMax ():
+    pass
+
+def showAvg ():
+    pass
+
+    
 
 ####################  Código principal  ###################
 
