@@ -38,10 +38,10 @@ DHT11_PIN = D7
 BUZZER_PIN = D3
 
 # Cantidad de valores a graficar
-maxValues = 10
+maxValues = 100
 
 # Tiempo entre mediciones
-sampleTime = 10
+sampleTime = 2
 
 ####################  Funciones ###################
 
@@ -59,13 +59,28 @@ def showList ():
     for i in listTH:
         print (i)
         
-def plotTemp ():
+def plotHum ():
     # Grafica los valores de temperatura
     display.clear()
-    display.draw_rectangle(9, 4, 110, 56, invert=False)
+    display.draw_rectangle(20, 4, 104, 56, invert=False)
+    #Ventana para imprimir 100 x 54
+    
+    #Escala de valores de humedad
+    display.draw_text(0, 0, "100", fixed, False)
+    display.draw_text(5, 27, "50", fixed, False)
+    display.draw_text(10, 54, "0", fixed, False)
+
+    #Mostrar cada valor almacenado
+    x = 22
+    for i in listTH:
+        h = int (i[1]*54/100)  #Escalar
+        print ("Plot: ",h)
+        display.draw_vline(x, 58-h, h, invert=False)
+        x=x+1
+    
     display.present ()
 
-def plotHum ():
+def plotTemp ():
     # Grafica los valores de humedad
     pass
 
@@ -80,8 +95,9 @@ display = Display(i2c=i2c, width=128, height=64)
 #Crear objeto sensor
 sensorTH = DHT11 (Pin(DHT11_PIN))
 
-# Carga font grande
+# Carga fonts
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
+fixed   = XglcdFont('fonts/FixedFont5x8.c',5,8)
 
 # Crear objeto lista para guardar los valores para el gráfico
 listTH = deque ([], maxValues)  #No usa maxlen=
@@ -115,7 +131,7 @@ while (True):
     #Borrar buffer
     display.clear_buffers()
     
-    plotTemp ()
+    plotHum ()
     
     #Mostrar valores de temperatura y humedad en OLED
     #display.draw_text(5, 31, tempStr, perfect, False)
