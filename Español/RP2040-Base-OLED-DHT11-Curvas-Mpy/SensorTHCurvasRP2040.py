@@ -86,9 +86,6 @@ def showTH (temp, hum):
     display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
     display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
 
-    display.draw_text(0, 0, "MIN", fixed, False)
-
-
     #Actualizar pantalla
     display.present()
     
@@ -146,8 +143,24 @@ def plotTemp ():
     
     display.present ()
 
-def showMin ():
-    pass
+def showMin (tempMin, humMin):
+    #Muestra valores mínimos
+    
+    tempStr = f"{tempMin:.1f}"
+    humStr  = f"{humMin:.0f}"
+    
+    #Imprime valores con numeros grandes
+    display.draw_text(5, 31, tempStr, perfect, False)
+    display.draw_text(85, 31, humStr, perfect, False)
+    
+    #Mostrar bitmaps
+    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
+    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+
+    display.draw_text(0, 0, "MIN", fixed, False)
+
+    #Actualizar pantalla
+    display.present()
 
 def showMax ():
     pass
@@ -193,6 +206,9 @@ while (True):
     # Guardarlo en la lista (deque)
     listTH.append ((temp,hum))
   
+    #Encontrar temp y hum max, min y avg desde que empezo a medir
+    #O en las funciones de Show explorar la lista buscando los valores
+  
     # Imprimir por consola
     print (temp,"grados")
     print (hum ,"%")
@@ -203,7 +219,7 @@ while (True):
         display.clear()
 
     if (modes[modeIndex] == "Values"):
-        showTH (temp, hum)
+        showMin (temp, hum)
     elif (modes[modeIndex] == "PlotTemp"):
         plotTemp ()
     else:
