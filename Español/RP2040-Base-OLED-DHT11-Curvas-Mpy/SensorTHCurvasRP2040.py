@@ -51,6 +51,23 @@ modes = ["Values", "Min", "Max", "Avg", "PlotTemp", "PlotHum"]
 
 ####################  Funciones ###################
 
+def printBig (temp, hum):
+    
+    tempStr = f"{temp:.1f}"
+    humStr  = f"{hum:.0f}"
+    
+    #Imprime valores con numeros grandes
+    #Borra antes porque el "1" no tapa
+    display.draw_text(5, 31, "     ", perfect, False)
+    display.draw_text(5, 31, tempStr, perfect, False)
+    display.draw_text(85, 31, "   ", perfect, False)  
+    display.draw_text(85, 31, humStr, perfect, False)
+
+def showBitmaps ():
+    #Mostrar bitmaps
+    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
+    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+
 def readButton ():
     # Lee el User Button de la placa de expansion en D1
     button = Pin (D1, Pin.IN, Pin.PULL_UP)
@@ -67,17 +84,13 @@ def beep():
 
         
 def showTH (temp, hum):
-    # Muestra TyH con bitmaps
-    tempStr = f"{temp:.1f}"
-    humStr  = f"{hum:.0f}"
-
-    #Imprime valores con numeros grandes
-    display.draw_text(5, 31, tempStr, perfect, False)
-    display.draw_text(85, 31, humStr, perfect, False)
+    # Muestra TyH actual con bitmaps
     
-    #Mostrar bitmaps
-    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+    # Imprime valores con font grande
+    printBig (temp, hum)
+    
+    # Muestra bitmaps de temp y hum
+    showBitmaps ()
 
     #Actualizar pantalla
     display.present()
@@ -145,16 +158,11 @@ def showMin (values):
         if (value[1] < humMin):   #Humedad
             humMin = value[1]
     
-    tempStr = f"{tempMin:.1f}"
-    humStr  = f"{humMin:.0f}"
+    # Imprime valores con font grande
+    printBig (tempMin, humMin)
     
-    #Imprime valores con numeros grandes
-    display.draw_text(5, 31, tempStr, perfect, False)
-    display.draw_text(85, 31, humStr, perfect, False)
-    
-    #Mostrar bitmaps
-    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+    # Muestra bitmaps
+    showBitmaps ()
 
     display.draw_text(0, 0, "MIN", fixed, False)
 
@@ -172,17 +180,12 @@ def showMax (values):
         if (value[1] > humMax):   #Humedad
             humMax = value[1]
     
-    tempStr = f"{tempMax:.1f}"
-    humStr  = f"{humMax:.0f}"
+    # Imprime valores con font grande
+    printBig (tempMax, humMax)
     
-    #Imprime valores con numeros grandes
-    display.draw_text(5, 31, tempStr, perfect, False)
-    display.draw_text(85, 31, humStr, perfect, False)
+    # Muestra bitmaps
+    showBitmaps ()
     
-    #Mostrar bitmaps
-    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
-
     display.draw_text(0, 0, "MAX", fixed, False)
 
     #Actualizar pantalla
@@ -200,17 +203,12 @@ def showAvg (values):
     tempAvg = tempSum / len(values)
     humAvg  = humSum  / len(values)
 
-    tempStr = f"{tempAvg:.1f}"
-    humStr  = f"{humAvg:.0f}"
+    # Imprime valores con font grande
+    printBig (tempAvg, humAvg)
     
-    #Imprime valores con numeros grandes
-    display.draw_text(5, 31, tempStr, perfect, False)
-    display.draw_text(85, 31, humStr, perfect, False)
+    # Muestra bitmaps
+    showBitmaps ()
     
-    #Mostrar bitmaps
-    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
-    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
-
     display.draw_text(0, 0, "AVG", fixed, False)
 
     #Actualizar pantalla
