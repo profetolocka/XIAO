@@ -47,7 +47,7 @@ maxValues = 100
 sampleTime = 1
 
 # Modos de visualizacion
-modes = ["Values", "PlotTemp", "PlotHum"]
+modes = ["Values", "Min", "Max", "Avg", "PlotTemp", "PlotHum"]
 
 ####################  Funciones ###################
 
@@ -143,8 +143,18 @@ def plotTemp ():
     
     display.present ()
 
-def showMin (tempMin, humMin):
-    #Muestra valores mínimos
+def showMin ():
+    #Muestra valores mínimos de las últimas 100 mediciones
+    
+    #Buscar los mínimos
+    tempMin = 50
+    humMin = 100
+    
+    for value in listTH:
+        if (value[0] < tempMin):  #Temperatura
+            tempMin = value[0]
+        if (value[1] < humMin):   #Humedad
+            humMin = value[1]
     
     tempStr = f"{tempMin:.1f}"
     humStr  = f"{humMin:.0f}"
@@ -163,10 +173,60 @@ def showMin (tempMin, humMin):
     display.present()
 
 def showMax ():
-    pass
+    #Muestra valores máximos de las últimas 100 mediciones
+    tempMax = 0
+    humMax = 0
+    
+    for value in listTH:
+        if (value[0] > tempMax):  #Temperatura
+            tempMax = value[0]
+        if (value[1] > humMax):   #Humedad
+            humMax = value[1]
+    
+    tempStr = f"{tempMax:.1f}"
+    humStr  = f"{humMax:.0f}"
+    
+    #Imprime valores con numeros grandes
+    display.draw_text(5, 31, tempStr, perfect, False)
+    display.draw_text(85, 31, humStr, perfect, False)
+    
+    #Mostrar bitmaps
+    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
+    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+
+    display.draw_text(0, 0, "MAX", fixed, False)
+
+    #Actualizar pantalla
+    display.present()
 
 def showAvg ():
-    pass
+    #Muestra valores promedio de las últimas 100 mediciones
+    tempAvg = 0
+    humAvg = 0
+    
+    for value in listTH:
+        tempAvg = tempAvg + value[0]
+        humAvg  = humAvg  + value[1]
+    
+    tempAvg = tempAvg / len(listTH)
+    humAvg  = humAvg  / len(listTH)
+
+    tempStr = f"{tempAvg:.1f}"
+    humStr  = f"{humAvg:.0f}"
+    
+    #Imprime valores con numeros grandes
+    display.draw_text(5, 31, tempStr, perfect, False)
+    display.draw_text(85, 31, humStr, perfect, False)
+    
+    #Mostrar bitmaps
+    display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
+    display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
+
+    display.draw_text(0, 0, "AVG", fixed, False)
+
+    #Actualizar pantalla
+    display.present()
+
 
     
 
@@ -205,9 +265,7 @@ while (True):
     
     # Guardarlo en la lista (deque)
     listTH.append ((temp,hum))
-  
-    #Encontrar temp y hum max, min y avg desde que empezo a medir
-    #O en las funciones de Show explorar la lista buscando los valores
+
   
     # Imprimir por consola
     print (temp,"grados")
@@ -219,7 +277,13 @@ while (True):
         display.clear()
 
     if (modes[modeIndex] == "Values"):
-        showMin (temp, hum)
+        showTH (temp, hum)
+    elif (modes[modeIndex] == "Min"):
+        showMin ()
+    elif (modes[modeIndex] == "Max"):
+        showMax ()
+    elif (modes[modeIndex] == "Avg"):
+        showAvg ()
     elif (modes[modeIndex] == "PlotTemp"):
         plotTemp ()
     else:
