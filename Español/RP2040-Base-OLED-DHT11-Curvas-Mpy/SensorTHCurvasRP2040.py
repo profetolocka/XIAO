@@ -65,18 +65,11 @@ def beep():
     sleep(0.1)
     buzzer.deinit()
 
-def showList ():
-    # Muestra la deque
-    for i in listTH:
-        print (i)
         
 def showTH (temp, hum):
     # Muestra TyH con bitmaps
     tempStr = f"{temp:.1f}"
     humStr  = f"{hum:.0f}"
-
-    #Borra display
-    #display.clear()
 
     #Imprime valores con numeros grandes
     display.draw_text(5, 31, tempStr, perfect, False)
@@ -90,14 +83,12 @@ def showTH (temp, hum):
     display.present()
     
 
-def plotHum ():
+def plotHum (values):
     # Grafica los valores de humedad
     
     maxHum = 100
     
-    #display.clear()
     display.draw_rectangle(20, 4, 104, 56, invert=False)
-    #Ventana para imprimir 100 x 54
     
     #Escala de valores de humedad
     display.draw_text(0, 0, "100", fixed, False)
@@ -109,7 +100,7 @@ def plotHum ():
 
     #Plotear los valores almacenados
     x = 22
-    for i in listTH:
+    for i in values:
         h = int (i[1]*56/maxHum)  #Escalar
         display.draw_vline(x, 5, 56-h, invert=True)
         display.draw_vline(x, 60-h, h, invert=False)
@@ -117,14 +108,12 @@ def plotHum ():
     
     display.present ()
 
-def plotTemp ():
+def plotTemp (values):
     # Grafica los valores de temperatura
     
     maxTemp = 50
     
-    #display.clear()
     display.draw_rectangle(20, 4, 104, 56, invert=False)
-    #Ventana para imprimir 100 x 54
     
     #Escala de valores de humedad
     display.draw_text(5, 0, "50", fixed, False)
@@ -136,21 +125,21 @@ def plotTemp ():
     
     #Plotear los valores almacenados
     x = 22
-    for i in listTH:
+    for i in values:
         h = int (i[0]*56/maxTemp)  #Escalar
         display.draw_vline(x, 60-h, h, invert=False)
         x=x+1
     
     display.present ()
 
-def showMin ():
+def showMin (values):
     #Muestra valores mínimos de las últimas 100 mediciones
     
     #Buscar los mínimos
     tempMin = 50
     humMin = 100
     
-    for value in listTH:
+    for value in values:
         if (value[0] < tempMin):  #Temperatura
             tempMin = value[0]
         if (value[1] < humMin):   #Humedad
@@ -172,12 +161,12 @@ def showMin ():
     #Actualizar pantalla
     display.present()
 
-def showMax ():
+def showMax (values):
     #Muestra valores máximos de las últimas 100 mediciones
     tempMax = 0
     humMax = 0
     
-    for value in listTH:
+    for value in values:
         if (value[0] > tempMax):  #Temperatura
             tempMax = value[0]
         if (value[1] > humMax):   #Humedad
@@ -199,17 +188,17 @@ def showMax ():
     #Actualizar pantalla
     display.present()
 
-def showAvg ():
+def showAvg (values):
     #Muestra valores promedio de las últimas 100 mediciones
-    tempAvg = 0
-    humAvg = 0
+    tempSum = 0
+    humSum = 0
     
-    for value in listTH:
-        tempAvg = tempAvg + value[0]
-        humAvg  = humAvg  + value[1]
+    for value in values:
+        tempSum = tempSum + value[0]   #Temperatura
+        humSum  = humSum  + value[1]   #Humedad
     
-    tempAvg = tempAvg / len(listTH)
-    humAvg  = humAvg  / len(listTH)
+    tempAvg = tempSum / len(values)
+    humAvg  = humSum  / len(values)
 
     tempStr = f"{tempAvg:.1f}"
     humStr  = f"{humAvg:.0f}"
@@ -227,8 +216,6 @@ def showAvg ():
     #Actualizar pantalla
     display.present()
 
-
-    
 
 ####################  Código principal  ###################
 
@@ -256,8 +243,6 @@ while (True):
     
     # Medir temperatura y humedad
     sensorTH.measure ()
-     
-    #beep ()
     
     # Separar valores
     temp = sensorTH.temperature()
@@ -266,32 +251,29 @@ while (True):
     # Guardarlo en la lista (deque)
     listTH.append ((temp,hum))
 
-  
     # Imprimir por consola
     print (temp,"grados")
     print (hum ,"%")
     
+    # Cambiar la visualizacion si pulsan boton
     if (readButton()==0):
         beep ()
         modeIndex = (modeIndex + 1) % len (modes)
         display.clear()
 
+    # Mostrar la visualizacion activa
     if (modes[modeIndex] == "Values"):
         showTH (temp, hum)
     elif (modes[modeIndex] == "Min"):
-        showMin ()
+        showMin (listTH)
     elif (modes[modeIndex] == "Max"):
-        showMax ()
+        showMax (listTH)
     elif (modes[modeIndex] == "Avg"):
-        showAvg ()
+        showAvg (listTH)
     elif (modes[modeIndex] == "PlotTemp"):
-        plotTemp ()
+        plotTemp (listTH)
     else:
-        plotHum ()
+        plotHum (listTH)
             
-   
-
-    #print (button.value())
-
     # Esperar para la próxima medición
     sleep(sampleTime)
