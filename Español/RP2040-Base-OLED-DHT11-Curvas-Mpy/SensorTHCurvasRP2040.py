@@ -215,7 +215,16 @@ def showAvg (values):
     #Actualizar pantalla
     display.present()
 
+def printError ():
+    
+    display.clear()
 
+    # Mensaje de error
+    display.draw_text(0, 0, "ERROR Sensor!", fixed, False)
+
+    #Actualizar pantalla
+    display.present()
+    
 ####################  Código principal  ###################
 
 #Crear objeto I2C
@@ -240,9 +249,12 @@ button = Pin (D1, Pin.IN, Pin.PULL_UP)
 # Arranca mostrando valores
 modeIndex = 0
 
+# Reset condicion de error
+errorFlag = False
+
 # Loop
 while (True):
-    
+        
     # Medir temperatura y humedad
     try:        
         sensorTH.measure ()
@@ -253,11 +265,24 @@ while (True):
         
     except Exception as e:
         print(f"Error al leer el sensor: {e}")
-        sleep (2)
+        printError ()
+        sleep (5)
+ 
+        errorFlag = True
+        
         continue  # Saltar lo que sigue    
     
     # Sigue si no hay error de lectura
     
+
+    print (errorFlag)
+    
+    if (errorFlag==True):         #Viene de condicion de error
+        errorFlag = False
+        print ("Limpiar!")
+
+        display.clear ()
+        
     # Guardarlo en la lista (deque)
     listTH.append ((temp,hum))
 
