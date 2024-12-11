@@ -2,7 +2,6 @@
 
 # Descripción
 Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO ESP32-C3** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
-Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmaps relacionadas con las magnitudes.
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
@@ -28,3 +27,15 @@ Done
 >>> 
 
 ```
+
+# Funcionamiento
+
+El sensor mide constantemente valores de temperatura y humedad y almacena en memoria las últimas 100 mediciones.  Tiene 5 modos de visualización:que se seleccionan pulsando secuencialmente el botón de usuario incluido en la placa de expansión. 
+Los modos de visualización son los siguientes:
+
+- Temperatura y humedad actuales: Muestra los últimos valores medidos
+- Temperatura y humedad mínimas: Muestra los valores mínimos dentro de los últimos 100 medidos.
+- Temperatura y humedad máximas: Muestra los valores máximos dentro de los últimos 100 medidos.
+- Temperatura y humedad medias: Muestra los valores medios dentro de los últimos 100 medidos.
+- Gráfica de Temperatura: Muestra los últimos 100 valores medidos de temperatura en forma gráfica.
+- Gráfica de Humedad: Muestra los últimos 100 valores medidos de humedad en forma gráfica.
