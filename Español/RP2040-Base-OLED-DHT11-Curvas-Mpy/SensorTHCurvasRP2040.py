@@ -1,7 +1,7 @@
 # Sensor de temperatura y humedad con RP2040 y modulo Grove DHT11
 # Muestra valores en OLED de placa de expansión
 # Usa fonts grandes y bitmaps
-# Muestra curvas de valores de temperatura y humedad
+# Muestra TH actual, max, mi, promedio y curvas de valores
 
 from time import sleep
 from machine import Pin, SoftI2C, PWM
@@ -43,7 +43,7 @@ BUTTON_PIN = D1
 # Cantidad de valores a graficar
 maxValues = 100
 
-# Tiempo entre mediciones
+# Tiempo entre mediciones (seg)
 sampleTime = 1
 
 # Modos de visualizacion
@@ -52,6 +52,7 @@ modes = ["Values", "Min", "Max", "Avg", "PlotTemp", "PlotHum"]
 ####################  Funciones ###################
 
 def printBig (temp, hum):
+    #Imprime dos valores con font grande
     
     tempStr = f"{temp:.1f}"
     humStr  = f"{hum:.0f}"
@@ -70,7 +71,7 @@ def showBitmaps ():
 
 def readButton ():
     # Lee el User Button de la placa de expansion en D1
-    button = Pin (D1, Pin.IN, Pin.PULL_UP)
+    # Retorna el valor leido
     return (button.value())
     
 def beep():
@@ -80,7 +81,7 @@ def beep():
     buzzer.duty_u16(32768)  # 50% Duty Cycle
 
     sleep(0.1)
-    buzzer.deinit()
+    buzzer.deinit()  #Libera recursos
 
         
 def showTH (temp, hum):
@@ -232,6 +233,9 @@ fixed   = XglcdFont('fonts/FixedFont5x8.c',5,8)
 
 # Crear objeto lista para guardar los valores para el gráfico
 listTH = deque ([], maxValues)  #No usa maxlen=
+
+# Crear objeto para el User button de la placa
+button = Pin (D1, Pin.IN, Pin.PULL_UP)
 
 # Arranca mostrando valores
 modeIndex = 0
