@@ -1,12 +1,11 @@
-# Uso de bitmaps en OLED
+# Using Bitmaps on OLED
 
-# Descripción
-Este es un ejemplo de uso del OLED de la Base expansion de XIAO con una placa ESP32-C3. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
+# Description
+This is an example of using the OLED on the XIAO Expansion Base with an ESP32-C3 board. A bitmap (Seeed Studio logo) is displayed in both normal and inverted modes.
 
-
-# Librerías
-Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
-Hay que copiarla en la carpeta \lib de la XIAO manualmente o usando **MIP**
+# Libraries
+This project uses the `ssd1306.py` library created by [rdagger](https://github.com/rdagger/micropython-ssd1306). It has been included under the MIT license.
+You need to copy it to the \lib folder of the XIAO manually or using **MIP**.
 
 ```python annotate
 >>> import network
@@ -23,18 +22,13 @@ Done
 
 ```
 
-# Imágenes
-El código carga la imagen `seeedLogo.mono` desde la carpeta **images** en el sistema de archivo
+# Images  
+The code loads the `seeedLogo.mono` image from the **images** folder in the file system.
 
-Esta imagen y la original en formato BMP están en la carpeta **images** del repositorio. En la misma carpeta se encuentra el programa **img2monoHMSB.py** que permite convertir la imagen BMP al formato monoHMSB
-
-Esto se hace de la siguiente forma:
-
-(En la ventana de comandos)
+This image and the original BMP format version are located in the **images** folder of the repository. In the same folder, you'll find the **img2monoHMSB.py** program, which converts the BMP image to the monoHMSB format.
 
 ```
 python img2monoHMSB.py seeedLogo.bmp
 ```
 
-El archivo `seeedLogo.mono` generado debe cargarse en la carpeta **images** de la XIAO
-
+The generated `seeedLogo.mono` file must be uploaded to the **images** folder on the XIAO.
