@@ -1,10 +1,9 @@
-# Lectura de sensor DHT11
+# Reading Data from DHT11 Sensor
 
-# Descripción
-Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo **Grove DHT11** usando una placa **XIAO ESP32-C3**.
+# Description  
+This program is a demonstration of how to read temperature and humidity data from a **Grove DHT11** module using a **XIAO ESP32-C3** board.
 
+# Libraries  
+This project uses the official `ssd1306.py` library, which can be copied manually to the XIAO's file system or installed through Thonny's **package manager**.
 
-# Librerías
-Este proyecto utiliza la librería `ssd1306.py` oficial que puede copiarse manualmente al sistema de archivos de la XIAO o a través del **gestor de paquetes** de Thonny.
-
-La librería para leer el DHT11 se encuentra incluída en el firmware de Micropython.
+The library for reading the DHT11 is included in the MicroPython firmware.
