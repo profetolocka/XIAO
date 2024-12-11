@@ -1,14 +1,14 @@
-# Sensor de temperatura y humedad con DHT11
+# Temperature and Humidity Sensor with DHT11
 
-# Descripción
-Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO ESP32-C3** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
-Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmaps relacionadas con las magnitudes.
+# Description  
+This project consists of a temperature and humidity sensor based on the **XIAO ESP32-C3** board and the **Grove DHT11** module. The module connects to the Expansion Board, and the temperature and humidity values are displayed on the OLED display.  
+Large fonts are used for the numeric values, and bitmap images related to the measurements are displayed.
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
-# Librerías
-Este proyecto usa la [librería de rdagger](https://github.com/rdagger/micropython-ssd1306) para controlar el OLED.
-Hay que instalar la librería del OLED (ssd1306.py) y la que permite el manejo de fonts (xglcd_font.py). Se lo puede hacer manualmente o usando MIP:
+# Libraries  
+This project uses [rdagger's library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
+You need to install the OLED library (`ssd1306.py`) and the font-handling library (`xglcd_font.py`). This can be done manually or using MIP:
 
 ```python annotate
 >>> import network
