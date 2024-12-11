@@ -3,6 +3,8 @@
 # Descripción
 Este es un ejemplo de uso del OLED de la Base expansion de XIAO con una placa ESP32-C3. Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
 
+![OLED Demo](images/OLEDLogo.jpg)
+
 
 # Librerías
 Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
