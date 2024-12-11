@@ -244,11 +244,19 @@ modeIndex = 0
 while (True):
     
     # Medir temperatura y humedad
-    sensorTH.measure ()
+    try:        
+        sensorTH.measure ()
     
-    # Separar valores
-    temp = sensorTH.temperature()
-    hum  = sensorTH.humidity()
+        # Separar valores
+        temp = sensorTH.temperature()
+        hum  = sensorTH.humidity()
+        
+    except Exception as e:
+        print(f"Error al leer el sensor: {e}")
+        sleep (2)
+        continue  # Saltar lo que sigue    
+    
+    # Sigue si no hay error de lectura
     
     # Guardarlo en la lista (deque)
     listTH.append ((temp,hum))
