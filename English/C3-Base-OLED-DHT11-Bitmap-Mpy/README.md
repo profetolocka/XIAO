@@ -4,7 +4,6 @@
 This project consists of a temperature and humidity sensor based on the **XIAO ESP32-C3** board and the **Grove DHT11** module. The module connects to the Expansion Board, and the temperature and humidity values are displayed on the OLED display.  
 Large fonts are used for the numeric values, and bitmap images related to the measurements are displayed.
 
-![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
 # Libraries  
 This project uses [rdagger's library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
