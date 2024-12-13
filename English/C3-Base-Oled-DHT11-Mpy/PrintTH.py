@@ -20,13 +20,13 @@ from dht import DHT11
 from ssd1306 import SSD1306_I2C  # Official library
 
 #Create I2C object
-i2c = SoftI2C(scl=Pin(7), sda=Pin(6), freq=100000)  #Initialize I2C
+i2c = SoftI2C(scl=Pin(D5), sda=Pin(D4), freq=100000)  #Initialize I2C
 
 #Create OLED object
 Display = SSD1306_I2C(128, 64, i2c)
 
 # Create sensor object
-sensorTH = DHT11(Pin(D5))
+sensorTH = DHT11(Pin(D7))
 
 while (1):
     sensorTH.measure()  #Measure
