@@ -6,6 +6,7 @@ Large fonts are used for the numeric values, and bitmap images related to the me
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
+
 # Libraries  
 This project uses [rdagger's library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
 You need to install the OLED library (`ssd1306.py`) and the font-handling library (`xglcd_font.py`). This can be done manually or using MIP:
