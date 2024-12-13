@@ -24,13 +24,13 @@ from xglcd_font import XglcdFont
 from dht import DHT11
 
 #Crear objeto I2C
-i2c = SoftI2C(freq=400000, scl=Pin(7), sda=Pin(6))  #Pines de la XIAO ESP32-C3
+i2c = SoftI2C(freq=400000, scl=Pin(D5), sda=Pin(D4))  
 
 #Crear objeto display
 display = Display(i2c=i2c, width=128, height=64)
 
 #Crear objeto sensor
-sensorTH = DHT11 (Pin(D5))
+sensorTH = DHT11 (Pin(D7))
 
 # Carga font grande
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
