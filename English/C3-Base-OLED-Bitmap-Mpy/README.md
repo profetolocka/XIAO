@@ -28,6 +28,7 @@ Done
 The code loads the `seeedLogo.mono` image from the **images** folder in the file system.
 
 This image and the original BMP format version are located in the **images** folder of the repository. In the same folder, you'll find the **img2monoHMSB.py** program, which converts the BMP image to the monoHMSB format.
+To perform this conversion, type the following in a command window:
 
 ```
 python img2monoHMSB.py seeedLogo.bmp
