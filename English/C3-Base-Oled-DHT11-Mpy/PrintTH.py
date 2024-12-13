@@ -1,8 +1,18 @@
 # Measures temperature and humidity values using the Grove DHT11 module
 # Displays on OLED from expansion board using the official ssd1306 library
 
-# Pins
+#Pin name and GPIO equivalences
+D0 = 2
+D1 = 3
+D2 = 4
+D3 = 5
+D4 = 6
 D5 = 7
+D6 = 21
+D7 = 20
+D8 = 8
+D9 = 9
+D10 = 10
 
 from machine import Pin, SoftI2C
 from time import sleep
