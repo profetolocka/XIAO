@@ -1,8 +1,11 @@
-# Mide valores de temperatura y humedad usando el módulo Grove DHT11
-# Muestra en OLED de base de expansion usando lib ssd1306 oficial
-# Usa la placa XIAO RP2040
+# Author: Ernesto Tolocka (profe Tolocka)
+# Date: 14-12-2024
+# Description: Measures temperature and humidity values using the Grove DHT11 module
+# 	Displays on OLED from expansion base using the official ssd1306 library
+# 	Uses the XIAO RP2040 board
+# License: MIT
 
-# Pines
+# Pins
 D0 = 26
 D1 = 27
 D2 = 28
@@ -15,54 +18,53 @@ D8 = 2
 D9 = 4
 D10 = 3
 
-#I2C
+# I2C
 SDA_PIN = D4
 SCL_PIN = D5
 
-#Buzzer
+# Buzzer
 BUZZER_PIN = D3
 
 from machine import Pin, SoftI2C, PWM
 from time import sleep
 from dht import DHT11
-from ssd1306 import SSD1306_I2C #Libreria oficial
+from ssd1306 import SSD1306_I2C  # Official library
 
-#Crea objeto Buzzer como PWM. DC inicial = 0
-Buzzer = PWM(Pin(BUZZER_PIN), freq=1000, duty_u16=0)
+# Create I2C object
+i2c = SoftI2C(scl=Pin(SCL_PIN), sda=Pin(SDA_PIN), freq=100000)  # Initialize i2c
 
-#Crea objeto I2C
-i2c = SoftI2C(scl=Pin(SCL_PIN), sda=Pin(SDA_PIN), freq=100000)  #Inicializa i2c
+# Create OLED object
+Display = SSD1306_I2C(128, 64, i2c)
 
-#Crea objeto oled
-Display = SSD1306_I2C (128, 64, i2c)
+# The Grove DHT11 module is connected to D7
+sensorTH = DHT11(Pin(D7))
 
-#El modulo Grove DHT11 está conectado a D7
-sensorTH = DHT11 (Pin(D7))
+# Makes a beep using the passive buzzer on the expansion board
+def beep():
+    # Makes a beep on the passive buzzer
+    buzzer = PWM(Pin(BUZZER_PIN))
+    buzzer.freq(1000)
+    buzzer.duty_u16(32768)  # 50% Duty Cycle
 
-# Hace un bip usando el zumbador pasivo de la placa de expansión
-def Beep ():
-    Buzzer.duty_u16(32768)     # Fija DC a 50%
-    sleep (0.1)
-    Buzzer.duty_u16(0)         # Fija DC a 0%
+    sleep(0.1)
+    buzzer.deinit()  # Releases resources
 
-    
 # Loop
 
-while (1):
-    sensorTH.measure ()  #Mide
+while True:
+    sensorTH.measure()  # Measure
     
-    print (sensorTH.temperature(),"degrees")
-    print (sensorTH.humidity (),"%")
+    print(sensorTH.temperature(), "degrees")
+    print(sensorTH.humidity(), "%")
     
-    Display.fill (0)
+    Display.fill(0)
 
-    Display.text ("Temp=",10,10,1)
-    Display.text (str(sensorTH.temperature()),50,10,1)
-    Display.text ("Hum=",10,20,1)
-    Display.text (str(sensorTH.humidity ()),50,20,1)
+    Display.text("Temp=", 10, 10, 1)
+    Display.text(str(sensorTH.temperature()), 50, 10, 1)
+    Display.text("Hum=", 10, 20, 1)
+    Display.text(str(sensorTH.humidity()), 50, 20, 1)
     Display.show()
     
-    Beep ()
+    beep()
     
-    sleep (5)
-
+    sleep(5)
