@@ -51,7 +51,7 @@ def Beep ():
 while (1):
     sensorTH.measure ()  #Mide
     
-    print (sensorTH.temperature(),"grados")
+    print (sensorTH.temperature(),"degrees")
     print (sensorTH.humidity (),"%")
     
     Display.fill (0)
@@ -65,6 +65,4 @@ while (1):
     Beep ()
     
     sleep (5)
-
-
 
