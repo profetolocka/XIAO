@@ -3,7 +3,7 @@
 # Descripción
 Este es un ejemplo de uso del OLED de la Base expansion con una placa **XIAO RP2040** . Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
 
-![Demo bitmpas](images/RP2040Bitmaps.jpeg)
+![Demo bitmaps](images/RP2040Bitmaps.jpg)
 
 
 # Librerías
