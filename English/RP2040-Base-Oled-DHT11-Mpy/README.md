@@ -1,12 +1,12 @@
-# Lectura de sensor DHT11
+# DHT11 Sensor Reading
 
-# Descripción
-Este programa es una demostración de como se leen datos de temperatura y humedad de un módulo **Grove DHT11** usando una placa **XIAO RP2040**.
-El módulo **Grove DHT11** se conecta al pin **D7**
+# Description
+This program demonstrates how to read temperature and humidity data from a **Grove DHT11** module using a **XIAO RP2040** board.  
+The **Grove DHT11** module is connected to pin **D7**.
 
 ![XIAO RP2040](images/RP2040OledDHT11.jpg)
 
-# Librerías
-Este proyecto utiliza la librería `ssd1306.py` oficial que puede copiarse manualmente al sistema de archivos de la XIAO o a través del **gestor de paquetes** de Thonny.
+# Libraries
+This project uses the official `ssd1306.py` library, which can be manually copied to the XIAO file system or installed via Thonny's **package manager**.
 
-La librería para leer el DHT11 se encuentra incluída en el firmware de Micropython.
+The library for reading the DHT11 is included in the MicroPython firmware.
