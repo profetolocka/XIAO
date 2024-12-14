@@ -3,6 +3,8 @@
 # Descripción
 Este es un ejemplo de uso del OLED de la Base expansion con una placa **XIAO RP2040** . Se muestra un bitmap (logo de Seeed Studio) en modo directo e inverso.
 
+![Demo bitmpas](images/RP2040Bitmaps.jpeg)
+
 
 # Librerías
 Este proyecto utiliza la librería `ssd1306.py` creada por [rdagger](https://github.com/rdagger/micropython-ssd1306). La misma ha sido incluida bajo la licencia MIT.
