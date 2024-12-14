@@ -1,7 +1,7 @@
-#Demo de imagen bitmap. Muestra el logo de Seeed Studio
-#Usa una placa XIAO RP2040
+# Bitmap image demo. Displays the Seeed Studio logo
+# Uses a XIAO RP2040 board
 
-#Nombre de los pines GPIO
+# GPIO pin names
 D0 = 26
 D1 = 27
 D2 = 28
@@ -14,32 +14,31 @@ D8 = 2
 D9 = 4
 D10 = 3
 
-#Pines de I2C en la RP2040
+# I2C pins on the RP2040
 SDA_PIN = D4
 SCL_PIN = D5
-
 
 from time import sleep
 from machine import Pin, SoftI2C 
 from ssd1306 import Display
 
-#Crear objeto I2C
+# Create I2C object
 i2c = SoftI2C(freq=400000, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN))  
 
-#Crear objeto display
+# Create display object
 display = Display(i2c=i2c, width=128, height=64)
 
 while (True):
 
-    #Mostrar bitmap
+    # Display bitmap
     display.draw_bitmap("images/seeedLogo.mono", 0, 0, 116, 64)
     display.present()
     sleep(10)
 
-    #Borrar buffer
+    # Clear buffer
     display.clear_buffers()
 
-    #Mostrar bitmap
+    # Display bitmap (inverted)
     display.draw_bitmap("images/seeedLogo.mono", 0, 0, 116, 64, invert=True)
     display.present()
     sleep(10)
