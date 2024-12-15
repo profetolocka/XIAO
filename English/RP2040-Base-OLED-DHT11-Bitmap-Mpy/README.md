@@ -4,7 +4,7 @@
 This project consists of a temperature and humidity sensor based on the **XIAO RP2040** board and the **Grove DHT11** module. The module connects to the Expansion Board, and the temperature and humidity values are displayed on the OLED display.  
 Large fonts are used for the numeric values, and bitmap images related to the measurements are shown.
 
-![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
+![alt text](images/RP2040BaseOledDHT11Bitmaps.jpg)
 
 # Libraries
 This project uses the [rdagger library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
