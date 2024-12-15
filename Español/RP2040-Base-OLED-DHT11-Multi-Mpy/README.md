@@ -30,7 +30,7 @@ Done
 
 # Funcionamiento
 
-El sensor mide constantemente valores de temperatura y humedad y almacena en memoria las últimas 100 mediciones.  Tiene 5 modos de visualización:que se seleccionan pulsando secuencialmente el botón de usuario incluido en la placa de expansión. 
+El sensor mide constantemente valores de temperatura y humedad y almacena en memoria las últimas 100 mediciones.  Tiene 5 modos de visualización que se seleccionan pulsando secuencialmente el botón de usuario incluido en la placa de expansión. 
 Los modos de visualización son los siguientes:
 
 - Temperatura y humedad actuales: Muestra los últimos valores medidos
