@@ -46,5 +46,6 @@ Los modos de visualización son los siguientes:
 # Proyectos relacionados
 
 [Demo de bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-Bitmap-Mpy)
+
 [Sensor DHT mas bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-DHT11-Bitmap-Mpy)
 
