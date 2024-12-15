@@ -1,7 +1,10 @@
-# Sensor de temperatura y humedad con RP2040 y modulo Grove DHT11
-# Muestra valores en OLED de placa de expansión
-# Usa fonts grandes y bitmaps
-# Muestra TH actual, max, mi, promedio y curvas de valores
+# Autor: Ernesto Tolocka (profe Tolocka)
+# Fecha de Creación: 15-12-2024
+# Descripción: Programa para medir temperatura y humedad con la placa XIAO RP2040 y el módulo Grove DHT11.
+# 	Muestra valores en OLED de placa de expansión
+# 	Usa fonts grandes y bitmaps
+# 	Muestra TH actual, max, min, promedio y curvas de valores
+# Licencia: MIT
 
 from time import sleep
 from machine import Pin, SoftI2C, PWM
@@ -272,10 +275,7 @@ while (True):
         
         continue  # Saltar lo que sigue    
     
-    # Sigue si no hay error de lectura
-    
-
-    print (errorFlag)
+        # Sigue si no hay error de lectura
     
     if (errorFlag==True):         #Viene de condicion de error
         errorFlag = False
