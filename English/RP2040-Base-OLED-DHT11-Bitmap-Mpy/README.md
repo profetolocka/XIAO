@@ -35,3 +35,7 @@ To print the temperature and humidity values on the OLED, the font **PerfectPixe
 # Images
 Two bitmap images are used to accompany the numeric values. These are **TempIcon.mono** and **HumIcon.mono**, which should be copied to the file system in the folder **images**
 
+# Related projects
+[Bitmaps demo](https://github.com/profetolocka/XIAO/tree/main/English/RP2040-Base-OLED-Bitmap-Mpy)
+
+
