@@ -1,20 +1,23 @@
-# Sensor de temperatura y humedad con RP2040 y modulo Grove DHT11
-# Muestra valores en OLED de placa de expansión
-# Usa fonts grandes y bitmaps
-# Muestra TH actual, max, mi, promedio y curvas de valores
+# Author: Ernesto Tolocka (profe Tolocka)
+# Creation Date: 15-12-2024
+# Description: Program to measure temperature and humidity with the XIAO RP2040 board and the Grove DHT11 module.
+#   Displays values on the OLED of the expansion board
+#   Uses large fonts and bitmaps
+#   Shows current TH, max, min, average, and value graphs
+# License: MIT
 
 from time import sleep
 from machine import Pin, SoftI2C, PWM
 from ssd1306 import Display
 from xglcd_font import XglcdFont
 
-from collections import deque  #doble-ended queue
+from collections import deque  # double-ended queue
 
 from dht import DHT11
 
-################  Constantes ####################
+################  Constants ####################
 
-#Equivalencias entre nombres de pines y GPIOs
+# Pin name and GPIO mappings
 D0 = 26
 D1 = 27
 D2 = 28
@@ -27,288 +30,285 @@ D8 = 2
 D9 = 4
 D10 = 3
 
-# Pines de I2C de la RP2040
+# RP2040 I2C pins
 SDA_PIN = D4
 SCL_PIN = D5
 
-# Pin de conexion del DHT11
+# DHT11 connection pin
 DHT11_PIN = D7
 
-#Buzzer
+# Buzzer
 BUZZER_PIN = D3
 
-#Botón
+# Button
 BUTTON_PIN = D1
 
-# Cantidad de valores a graficar
+# Number of values to plot
 maxValues = 100
 
-# Tiempo entre mediciones (seg)
+# Time between measurements (sec)
 sampleTime = 1
 
-# Modos de visualizacion
+# Display modes
 modes = ["Values", "Min", "Max", "Avg", "PlotTemp", "PlotHum"]
 
-####################  Funciones ###################
+####################  Functions ###################
 
-def printBig (temp, hum):
-    #Imprime dos valores con font grande
+def printBig(temp, hum):
+    # Prints two values with a large font
     
     tempStr = f"{temp:.1f}"
     humStr  = f"{hum:.0f}"
     
-    #Imprime valores con numeros grandes
-    #Borra antes porque el "1" no tapa
+    # Prints values with large numbers
+    # Clears before because the "1" doesn't cover completely
     display.draw_text(5, 31, "     ", perfect, False)
     display.draw_text(5, 31, tempStr, perfect, False)
     display.draw_text(85, 31, "   ", perfect, False)  
     display.draw_text(85, 31, humStr, perfect, False)
 
-def showBitmaps ():
-    #Mostrar bitmaps
+def showBitmaps():
+    # Displays bitmaps
     display.draw_bitmap("images/TempIcon.mono", 25, 0, 32, 32, True)
     display.draw_bitmap("images/HumIcon.mono",  85, 0, 32, 32, True)
 
-def readButton ():
-    # Lee el User Button de la placa de expansion en D1
-    # Retorna el valor leido
+def readButton():
+    # Reads the User Button on the expansion board at D1
+    # Returns the read value
     return (button.value())
     
 def beep():
-    # Hace un beep en el buzzer pasivo
+    # Makes a beep on the passive buzzer
     buzzer = PWM(Pin(BUZZER_PIN))
     buzzer.freq(1000)
     buzzer.duty_u16(32768)  # 50% Duty Cycle
 
     sleep(0.1)
-    buzzer.deinit()  #Libera recursos
+    buzzer.deinit()  # Releases resources
 
         
-def showTH (temp, hum):
-    # Muestra TyH actual con bitmaps
+def showTH(temp, hum):
+    # Displays current temperature and humidity with bitmaps
     
-    # Imprime valores con font grande
-    printBig (temp, hum)
+    # Prints values with a large font
+    printBig(temp, hum)
     
-    # Muestra bitmaps de temp y hum
-    showBitmaps ()
+    # Displays temp and hum bitmaps
+    showBitmaps()
 
-    #Actualizar pantalla
+    # Update screen
     display.present()
     
 
-def plotHum (values):
-    # Grafica los valores de humedad
+def plotHum(values):
+    # Plots humidity values
     
     maxHum = 100
     
     display.draw_rectangle(20, 4, 104, 56, invert=False)
     
-    #Escala de valores de humedad
+    # Humidity scale values
     display.draw_text(0, 0, "100", fixed, False)
     display.draw_text(5, 28, "50", fixed, False)
     display.draw_text(10, 54, "0", fixed, False)
     
-    #Titulo
+    # Title
     display.draw_text(5, 15, "H", fixed, False)
 
-    #Plotear los valores almacenados
+    # Plot the stored values
     x = 22
     for i in values:
-        h = int (i[1]*56/maxHum)  #Escalar
-        display.draw_vline(x, 5, 56-h, invert=True)
-        display.draw_vline(x, 60-h, h, invert=False)
-        x=x+1
+        h = int(i[1] * 56 / maxHum)  # Scale
+        display.draw_vline(x, 5, 56 - h, invert=True)
+        display.draw_vline(x, 60 - h, h, invert=False)
+        x = x + 1
     
-    display.present ()
+    display.present()
 
-def plotTemp (values):
-    # Grafica los valores de temperatura
+def plotTemp(values):
+    # Plots temperature values
     
     maxTemp = 50
     
     display.draw_rectangle(20, 4, 104, 56, invert=False)
     
-    #Escala de valores de humedad
+    # Temperature scale values
     display.draw_text(5, 0, "50", fixed, False)
     display.draw_text(5, 28, "25", fixed, False)
     display.draw_text(10, 54, "0", fixed, False)
     
-    #Titulo
+    # Title
     display.draw_text(5, 15, "T", fixed, False)
     
-    #Plotear los valores almacenados
+    # Plot the stored values
     x = 22
     for i in values:
-        h = int (i[0]*56/maxTemp)  #Escalar
-        display.draw_vline(x, 60-h, h, invert=False)
-        x=x+1
+        h = int(i[0] * 56 / maxTemp)  # Scale
+        display.draw_vline(x, 60 - h, h, invert=False)
+        x = x + 1
     
-    display.present ()
+    display.present()
 
-def showMin (values):
-    #Muestra valores mínimos de las últimas 100 mediciones
+def showMin(values):
+    # Displays minimum values from the last 100 measurements
     
-    #Buscar los mínimos
+    # Find the minimums
     tempMin = 50
     humMin = 100
     
     for value in values:
-        if (value[0] < tempMin):  #Temperatura
+        if (value[0] < tempMin):  # Temperature
             tempMin = value[0]
-        if (value[1] < humMin):   #Humedad
+        if (value[1] < humMin):   # Humidity
             humMin = value[1]
     
-    # Imprime valores con font grande
-    printBig (tempMin, humMin)
+    # Prints values with a large font
+    printBig(tempMin, humMin)
     
-    # Muestra bitmaps
-    showBitmaps ()
+    # Displays bitmaps
+    showBitmaps()
 
     display.draw_text(0, 0, "MIN", fixed, False)
 
-    #Actualizar pantalla
+    # Update screen
     display.present()
 
-def showMax (values):
-    #Muestra valores máximos de las últimas 100 mediciones
+def showMax(values):
+    # Displays maximum values from the last 100 measurements
     tempMax = 0
     humMax = 0
     
     for value in values:
-        if (value[0] > tempMax):  #Temperatura
+        if (value[0] > tempMax):  # Temperature
             tempMax = value[0]
-        if (value[1] > humMax):   #Humedad
+        if (value[1] > humMax):   # Humidity
             humMax = value[1]
     
-    # Imprime valores con font grande
-    printBig (tempMax, humMax)
+    # Prints values with a large font
+    printBig(tempMax, humMax)
     
-    # Muestra bitmaps
-    showBitmaps ()
+    # Displays bitmaps
+    showBitmaps()
     
     display.draw_text(0, 0, "MAX", fixed, False)
 
-    #Actualizar pantalla
+    # Update screen
     display.present()
 
-def showAvg (values):
-    #Muestra valores promedio de las últimas 100 mediciones
+def showAvg(values):
+    # Displays average values from the last 100 measurements
     tempSum = 0
     humSum = 0
     
     for value in values:
-        tempSum = tempSum + value[0]   #Temperatura
-        humSum  = humSum  + value[1]   #Humedad
+        tempSum = tempSum + value[0]   # Temperature
+        humSum  = humSum  + value[1]   # Humidity
     
     tempAvg = tempSum / len(values)
     humAvg  = humSum  / len(values)
 
-    # Imprime valores con font grande
-    printBig (tempAvg, humAvg)
+    # Prints values with a large font
+    printBig(tempAvg, humAvg)
     
-    # Muestra bitmaps
-    showBitmaps ()
+    # Displays bitmaps
+    showBitmaps()
     
     display.draw_text(0, 0, "AVG", fixed, False)
 
-    #Actualizar pantalla
+    # Update screen
     display.present()
 
-def printError ():
+def printError():
     
     display.clear()
 
-    # Mensaje de error
+    # Error message
     display.draw_text(0, 0, "ERROR Sensor!", fixed, False)
 
-    #Actualizar pantalla
+    # Update screen
     display.present()
     
-####################  Código principal  ###################
+####################  Main Code  ###################
 
-#Crear objeto I2C
+# Create I2C object
 i2c = SoftI2C(freq=400000, scl=Pin(SCL_PIN), sda=Pin(SDA_PIN)) 
 
-#Crear objeto display
+# Create display object
 display = Display(i2c=i2c, width=128, height=64)
 
-#Crear objeto sensor
-sensorTH = DHT11 (Pin(DHT11_PIN))
+# Create sensor object
+sensorTH = DHT11(Pin(DHT11_PIN))
 
-# Carga fonts
+# Load fonts
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
-fixed   = XglcdFont('fonts/FixedFont5x8.c',5,8)
+fixed   = XglcdFont('fonts/FixedFont5x8.c', 5, 8)
 
-# Crear objeto lista para guardar los valores para el gráfico
-listTH = deque ([], maxValues)  #No usa maxlen=
+# Create object list to store values for the graph
+listTH = deque([], maxValues)  # Does not use maxlen=
 
-# Crear objeto para el User button de la placa
-button = Pin (D1, Pin.IN, Pin.PULL_UP)
+# Create object for the User button on the board
+button = Pin(D1, Pin.IN, Pin.PULL_UP)
 
-# Arranca mostrando valores
+# Start by showing values
 modeIndex = 0
 
-# Reset condicion de error
+# Reset error condition
 errorFlag = False
 
 # Loop
 while (True):
         
-    # Medir temperatura y humedad
+    # Measure temperature and humidity
     try:        
-        sensorTH.measure ()
+        sensorTH.measure()
     
-        # Separar valores
+        # Separate values
         temp = sensorTH.temperature()
         hum  = sensorTH.humidity()
         
     except Exception as e:
-        print(f"Error al leer el sensor: {e}")
-        printError ()
-        sleep (5)
+        print(f"Error reading the sensor: {e}")
+        printError()
+        sleep(5)
  
         errorFlag = True
         
-        continue  # Saltar lo que sigue    
+        continue  # Skip the following code    
     
-    # Sigue si no hay error de lectura
+        # Proceed if no reading error
     
-
-    print (errorFlag)
-    
-    if (errorFlag==True):         #Viene de condicion de error
+    if (errorFlag == True):  # Comes from error condition
         errorFlag = False
-        print ("Limpiar!")
+        print("Clear!")
 
-        display.clear ()
+        display.clear()
         
-    # Guardarlo en la lista (deque)
-    listTH.append ((temp,hum))
+    # Save to the list (deque)
+    listTH.append((temp, hum))
 
-    # Imprimir por consola
-    print (temp,"grados")
-    print (hum ,"%")
+    # Print to console
+    print(temp, "degrees")
+    print(hum, "%")
     
-    # Cambiar la visualizacion si pulsan boton
-    if (readButton()==0):
-        beep ()
-        modeIndex = (modeIndex + 1) % len (modes)
+    # Change display mode if button is pressed
+    if (readButton() == 0):
+        beep()
+        modeIndex = (modeIndex + 1) % len(modes)
         display.clear()
 
-    # Mostrar la visualizacion activa
+    # Show the active display
     if (modes[modeIndex] == "Values"):
-        showTH (temp, hum)
+        showTH(temp, hum)
     elif (modes[modeIndex] == "Min"):
-        showMin (listTH)
+        showMin(listTH)
     elif (modes[modeIndex] == "Max"):
-        showMax (listTH)
+        showMax(listTH)
     elif (modes[modeIndex] == "Avg"):
-        showAvg (listTH)
+        showAvg(listTH)
     elif (modes[modeIndex] == "PlotTemp"):
-        plotTemp (listTH)
+        plotTemp(listTH)
     else:
-        plotHum (listTH)
+        plotHum(listTH)
             
-    # Esperar para la próxima medición
+    # Wait for the next measurement
     sleep(sampleTime)
