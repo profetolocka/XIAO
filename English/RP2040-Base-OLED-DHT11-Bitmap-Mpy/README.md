@@ -1,14 +1,15 @@
-# Sensor de temperatura y humedad con DHT11
+# Temperature and Humidity Sensor with DHT11
 
-# Descripción
-Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO RP2040** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
-Se usan fonts grandes para los valores numéricos y se muestran imágenes bitmaps relacionadas con las magnitudes.
+# Description
+This project consists of a temperature and humidity sensor based on the **XIAO RP2040** board and the **Grove DHT11** module. The module connects to the Expansion Board, and the temperature and humidity values are displayed on the OLED display.  
+Large fonts are used for the numeric values, and bitmap images related to the measurements are shown.
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
-# Librerías
-Este proyecto usa la [librería de rdagger](https://github.com/rdagger/micropython-ssd1306) para controlar el OLED.
-Hay que instalar la librería del OLED (ssd1306.py) y la que permite el manejo de fonts (xglcd_font.py). Se lo puede hacer manualmente o usando MIP:
+# Libraries
+This project uses the [rdagger library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
+You need to install the OLED library (`ssd1306.py`) and the font handling library (`xglcd_font.py`). This can be done manually or using MIP:
+
 
 ```python annotate
 >>> import network
@@ -29,8 +30,8 @@ Done
 
 ```
 # Fonts
-Para imprimir en el OLED los valores de temperatura y humedad, se usa la fuente **PerfectPixel_23x32** que debe estar copiada en el sistema de archivos de la RP2040 en la carpeta **fonts**
+To print the temperature and humidity values on the OLED, the font **PerfectPixel_23x32** is used, which should be copied to the file system of the RP2040 in the folder **fonts**
 
 # Imágenes
-Se usan dos imágenes tipo bitmap para acompañar a los valores numéricos. Estas son **TempIcon.mono** y **HumIcon.mono** que se deben copiar en el sistema de archivos de la RP2040 en la carpeta **images**
+Two bitmap images are used to accompany the numeric values. These are **TempIcon.mono** and **HumIcon.mono**, which should be copied to the file system in the folder **images**
 
