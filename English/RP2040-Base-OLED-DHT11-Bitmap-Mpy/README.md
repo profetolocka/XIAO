@@ -32,6 +32,6 @@ Done
 # Fonts
 To print the temperature and humidity values on the OLED, the font **PerfectPixel_23x32** is used, which should be copied to the file system of the RP2040 in the folder **fonts**
 
-# Imágenes
+# Images
 Two bitmap images are used to accompany the numeric values. These are **TempIcon.mono** and **HumIcon.mono**, which should be copied to the file system in the folder **images**
 
