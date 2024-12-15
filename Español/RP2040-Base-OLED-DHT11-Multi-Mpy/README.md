@@ -30,6 +30,14 @@ Done
 >>> 
 
 ```
+# Fonts
+
+El programa usa las fuentes **PerfectPixel_23x32** y **FixedFont5x8** que deben estar copiadas en la carpeta **fonts** del sistema de archivos de la RP2040
+
+# Imágenes
+
+Se usan dos imágenes tipo bitmap para acompañar a los valores numéricos. Estas son **TempIcon.mono** y **HumIcon.mono** que se deben copiar en el sistema de archivos de la RP2040 en la carpeta **images**
+
 
 # Funcionamiento
 
