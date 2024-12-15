@@ -1,16 +1,16 @@
-# Sensor de temperatura y humedad multifunción
+# Multifunction Temperature and Humidity Sensor
 
-# Descripción
-Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO RP2040** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
+# Description
+This project consists of a temperature and humidity sensor based on the **XIAO RP2040** board and the **Grove DHT11** module. The module connects to the Expansion Board, and the temperature and humidity values are displayed on the OLED display.
 
 ![alt text](images/multi1.jpg)
 
 ![alt text](images/multi2.jpg)
 
 
-# Librerías
-Este proyecto usa la [librería de rdagger](https://github.com/rdagger/micropython-ssd1306) para controlar el OLED.
-Hay que instalar la librería del OLED (ssd1306.py) y la que permite el manejo de fonts (xglcd_font.py). Se lo puede hacer manualmente o usando MIP:
+# Libraries  
+This project uses the [rdagger library](https://github.com/rdagger/micropython-ssd1306) to control the OLED.  
+The OLED library (`ssd1306.py`) and the font handling library (`xglcd_font.py`) need to be installed. This can be done manually or using MIP:
 
 ```python annotate
 >>> import network
@@ -30,30 +30,25 @@ Done
 >>> 
 
 ```
-# Fonts
+# Fonts  
+The program uses the **PerfectPixel_23x32** and **FixedFont5x8** fonts, which should be copied to the **fonts** folder in the RP2040 file system.
 
-El programa usa las fuentes **PerfectPixel_23x32** y **FixedFont5x8** que deben estar copiadas en la carpeta **fonts** del sistema de archivos de la RP2040
+# Images  
+Two bitmap images are used to accompany the numeric values. These are **TempIcon.mono** and **HumIcon.mono**, which should be copied to the **images** folder in the RP2040 file system.
 
-# Imágenes
+# Operation  
+The sensor constantly measures temperature and humidity values and stores the last 100 measurements in memory. It has 5 display modes that are selected by sequentially pressing the user button included on the expansion board.  
+The display modes are as follows:
 
-Se usan dos imágenes tipo bitmap para acompañar a los valores numéricos. Estas son **TempIcon.mono** y **HumIcon.mono** que se deben copiar en el sistema de archivos de la RP2040 en la carpeta **images**
+- Current Temperature and Humidity: Displays the most recent measured values.  
+- Minimum Temperature and Humidity: Displays the minimum values within the last 100 measurements.  
+- Maximum Temperature and Humidity: Displays the maximum values within the last 100 measurements.  
+- Average Temperature and Humidity: Displays the average values within the last 100 measurements.  
+- Temperature Graph: Displays the last 100 temperature measurements in graphical form.  
+- Humidity Graph: Displays the last 100 humidity measurements in graphical form.
 
+# Related projects
+[Bitmaps demo](https://github.com/profetolocka/XIAO/tree/main/English/RP2040-Base-OLED-Bitmap-Mpy)
 
-# Funcionamiento
-
-El sensor mide constantemente valores de temperatura y humedad y almacena en memoria las últimas 100 mediciones.  Tiene 5 modos de visualización que se seleccionan pulsando secuencialmente el botón de usuario incluido en la placa de expansión. 
-Los modos de visualización son los siguientes:
-
-- Temperatura y humedad actuales: Muestra los últimos valores medidos
-- Temperatura y humedad mínimas: Muestra los valores mínimos dentro de los últimos 100 medidos.
-- Temperatura y humedad máximas: Muestra los valores máximos dentro de los últimos 100 medidos.
-- Temperatura y humedad medias: Muestra los valores medios dentro de los últimos 100 medidos.
-- Gráfica de Temperatura: Muestra los últimos 100 valores medidos de temperatura en forma gráfica.
-- Gráfica de Humedad: Muestra los últimos 100 valores medidos de humedad en forma gráfica.
-
-# Proyectos relacionados
-
-[Demo de bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-Bitmap-Mpy)
-
-[Sensor DHT mas bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-DHT11-Bitmap-Mpy)
+[DHT sensor and bitmaps](https://github.com/profetolocka/XIAO/tree/main/English/RP2040-Base-OLED-DHT11-Bitmap-Mpy)
 
