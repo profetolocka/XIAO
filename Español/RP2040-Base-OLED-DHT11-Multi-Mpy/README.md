@@ -1,7 +1,7 @@
-# Sensor de temperatura y humedad con DHT11
+# Sensor de temperatura y humedad multifunción
 
 # Descripción
-Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO ESP32-C3** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
+Este proyecto consiste en un sensor de temperatura y humedad basado en la placa **XIAO RP2040** y el módulo **Grove DHT11**. El módulo se conecta a la Placa de expansión y los valores de temperatura y humedad se muestran en el display OLED.
 
 ![alt text](images/C3BaseOledDHT11Bitmaps.jpg)
 
