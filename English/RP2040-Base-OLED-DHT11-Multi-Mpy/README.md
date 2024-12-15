@@ -47,9 +47,8 @@ The display modes are as follows:
 - Temperature Graph: Displays the last 100 temperature measurements in graphical form.  
 - Humidity Graph: Displays the last 100 humidity measurements in graphical form.
 
-# Proyectos relacionados
+# Related projects
+[Bitmaps demo](https://github.com/profetolocka/XIAO/tree/main/English/RP2040-Base-OLED-Bitmap-Mpy)
 
-[Demo de bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-Bitmap-Mpy)
-
-[Sensor DHT mas bitmaps](https://github.com/profetolocka/XIAO/tree/main/Espa%C3%B1ol/RP2040-Base-OLED-DHT11-Bitmap-Mpy)
+[DHT sensor and bitmaps](https://github.com/profetolocka/XIAO/tree/main/English/RP2040-Base-OLED-DHT11-Bitmap-Mpy)
 
