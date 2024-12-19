@@ -239,15 +239,15 @@ display = Display(i2c=i2c, width=128, height=64)
 #Crear objeto sensor
 sensorTH = DHT11 (Pin(DHT11_PIN))
 
+# Crear objeto para el User button de la placa
+button = Pin (D1, Pin.IN, Pin.PULL_UP)
+
 # Carga fonts
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
 fixed   = XglcdFont('fonts/FixedFont5x8.c',5,8)
 
 # Crear objeto lista para guardar los valores para el gráfico
 listTH = deque ([], maxValues)  #No usa maxlen=
-
-# Crear objeto para el User button de la placa
-button = Pin (D1, Pin.IN, Pin.PULL_UP)
 
 # Arranca mostrando valores
 modeIndex = 0
