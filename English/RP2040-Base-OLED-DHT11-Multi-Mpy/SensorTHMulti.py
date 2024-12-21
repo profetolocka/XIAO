@@ -239,6 +239,9 @@ display = Display(i2c=i2c, width=128, height=64)
 # Create sensor object
 sensorTH = DHT11(Pin(DHT11_PIN))
 
+# Create object for the User button on the board
+button = Pin(D1, Pin.IN, Pin.PULL_UP)
+
 # Load fonts
 perfect = XglcdFont('fonts/PerfectPixel_23x32.c', 23, 32)
 fixed   = XglcdFont('fonts/FixedFont5x8.c', 5, 8)
@@ -246,8 +249,6 @@ fixed   = XglcdFont('fonts/FixedFont5x8.c', 5, 8)
 # Create object list to store values for the graph
 listTH = deque([], maxValues)  # Does not use maxlen=
 
-# Create object for the User button on the board
-button = Pin(D1, Pin.IN, Pin.PULL_UP)
 
 # Start by showing values
 modeIndex = 0
