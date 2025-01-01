@@ -15,6 +15,8 @@ Con un tamaño ultra reducido (sólo 20 x 17,5 cm) y basados en plataformas de h
 
 Las placas XIAO (un prefijo del idioma chino que se traduce como “pequeño”) encierran una enorme capacidad y flexibilidad en un tamaño compacto.
 
+[](https://i0.wp.com/www.profetolocka.com.ar/wp-content/uploads/2024/12/Modelos-CrowPanel.png?w=1000&ssl=1)
+
 [![Alt text](https://img.youtube.com/vi/A_XUi8tlKWk/0.jpg)](https://www.youtube.com/watch?v=A_XUi8tlKWk)
 
 ## Contenido
